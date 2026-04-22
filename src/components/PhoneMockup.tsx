@@ -821,6 +821,14 @@ const RewardScreen = () => {
 const BuddiesScreen = () => {
   const buddies = [
     {
+      name: "Suleman Ahmadzai",
+      initials: "SA",
+      gradient: "from-emerald-400 to-teal-600",
+      status: "ACTIVE",
+      statusBg: "bg-primary/15 text-primary",
+      action: "Nudge",
+    },
+    {
       name: "Davis Curtis",
       initials: "DC",
       gradient: "from-blue-400 to-indigo-600",
