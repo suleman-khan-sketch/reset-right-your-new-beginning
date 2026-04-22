@@ -45,8 +45,8 @@ const Navbar = () => {
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <ul className="ml-2 hidden flex-1 items-center gap-1 md:flex">
+        {/* Desktop links — centered between logo and CTA */}
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
           {links.map((l) => (
             <li key={l.to}>
               <NavLink
