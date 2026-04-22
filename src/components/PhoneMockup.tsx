@@ -88,7 +88,7 @@ const PhoneMockup = () => {
             <div
               key={tab}
               className={`scrollbar-hide absolute inset-0 overflow-y-auto pt-9 animate-fade-in ${
-                tab === "chat" ? "pb-[120px]" : "pb-24"
+                tab === "chat" ? "pb-[210px]" : "pb-24"
               }`}
             >
               {tab === "home" && <HomeScreen />}
@@ -98,7 +98,12 @@ const PhoneMockup = () => {
               {tab === "buddies" && <BuddiesScreen />}
             </div>
 
-            {tab === "chat" && <ChatInput />}
+            {tab === "chat" && (
+              <>
+                <TodaysChallenge />
+                <ChatInput />
+              </>
+            )}
 
             {/* Bottom Nav — pill style matching real app */}
             <div className="absolute inset-x-3 bottom-3 z-30">
@@ -339,11 +344,11 @@ const ChatScreen = () => {
       <div className="flex items-center gap-2">
         <ChevronLeft className="h-4 w-4" />
         <div className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-primary/40 to-primary-deep ring-2 ring-primary/30">
-          <img src={mascot} alt="AI Coach" className="h-7 w-7" />
+          <img src={mascot} alt="AI Nudge" className="h-7 w-7" />
           <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-primary ring-2 ring-background" />
         </div>
         <div className="flex-1">
-          <p className="text-xs font-bold">AI Coach</p>
+          <p className="text-xs font-bold">AI Nudge</p>
           <p className="text-[8px] text-primary">Online</p>
         </div>
       </div>
@@ -378,20 +383,24 @@ const ChatScreen = () => {
         <Bubble side="right">Motivate me 💪</Bubble>
         <Bubble side="left">It's okay to feel low. Let's do just ONE task together.</Bubble>
       </div>
-
-      {/* Today's challenge */}
-      <div className="rounded-xl border border-primary/30 bg-gradient-to-br from-primary/20 via-primary/5 to-transparent p-2.5">
-        <p className="text-[10px] font-bold">Today's Challenge ⚡</p>
-        <p className="mt-0.5 text-[9px] text-muted-foreground">
-          Finish today's main task 15% faster. Reward: +15 XP
-        </p>
-        <button className="mt-2 w-full rounded-lg bg-white py-1.5 text-[9px] font-bold text-black">
-          Accept Challenge
-        </button>
-      </div>
     </div>
   );
 };
+
+/* Today's Challenge — pinned directly above the chat input */
+const TodaysChallenge = () => (
+  <div className="absolute inset-x-3 bottom-[120px] z-20">
+    <div className="rounded-xl border border-primary/30 bg-gradient-to-br from-primary/25 via-primary/10 to-transparent p-2.5 backdrop-blur-xl shadow-elegant">
+      <p className="text-[10px] font-bold">Today's Challenge ⚡</p>
+      <p className="mt-0.5 text-[9px] text-muted-foreground">
+        Finish today's main task 15% faster. Reward: +15 XP
+      </p>
+      <button className="mt-2 w-full rounded-lg bg-white py-1.5 text-[9px] font-bold text-black">
+        Accept Challenge
+      </button>
+    </div>
+  </div>
+);
 
 const ChatInput = () => (
   <div className="absolute inset-x-3 bottom-[68px] z-20">
