@@ -90,23 +90,19 @@ const ROTATION_MS = 2000;
 
 const TestimonialCarousel = () => {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    if (paused) return;
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % testimonials.length);
     }, ROTATION_MS);
     return () => clearInterval(id);
-  }, [paused]);
+  }, []);
 
   const t = testimonials[index];
 
   return (
     <div
       className="reveal relative mx-auto max-w-4xl overflow-hidden rounded-[2.5rem] border border-primary/20 bg-gradient-card p-10 sm:p-14"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
       <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gradient-orb opacity-50 blur-3xl" />
 
