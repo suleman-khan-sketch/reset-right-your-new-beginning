@@ -407,7 +407,15 @@ const ChatScreen = () => {
 
 const Bubble = ({ side, children }: { side: "left" | "right"; children: React.ReactNode }) => (
   <div className={`flex items-end gap-1.5 ${side === "right" ? "flex-row-reverse" : ""}`}>
-    <div className="h-5 w-5 shrink-0 rounded-full bg-muted" />
+    {side === "left" ? (
+      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary/30 to-primary-deep/40 ring-1 ring-primary/40">
+        <img src={mascot} alt="" className="h-3.5 w-3.5" />
+      </div>
+    ) : (
+      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-400 to-pink-500 text-[7px] font-bold text-white ring-1 ring-white/20">
+        J
+      </div>
+    )}
     <div
       className={`max-w-[75%] rounded-2xl px-2.5 py-1.5 text-[9px] leading-snug ${
         side === "right" ? "bg-primary text-primary-foreground" : "bg-card border border-border/60"
