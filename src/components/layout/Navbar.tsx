@@ -41,7 +41,7 @@ const Navbar = () => {
             <img src={mascot} alt="Reset Right mascot" className="relative h-9 w-9 object-contain" />
           </div>
           <span className="hidden font-display text-lg font-bold tracking-tight sm:block">
-            Reset <span className="text-gradient">Right</span>
+            Reset<span className="text-gradient">Right</span>
           </span>
         </Link>
 
