@@ -2,19 +2,14 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Sparkles,
-  Brain,
-  Bell,
-  Compass,
-  Users,
-  BarChart3,
   Star,
-  ShieldCheck,
   PlayCircle,
   Check,
   ShieldOff,
 } from "lucide-react";
 import PhoneMockup from "@/components/PhoneMockup";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
+import FeaturesAccordion from "@/components/FeaturesAccordion";
 import mascot from "@/assets/mascot.png";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
@@ -23,50 +18,6 @@ import avatar4 from "@/assets/avatar-4.jpg";
 
 const avatars = [avatar1, avatar2, avatar3, avatar4];
 
-const features = [
-  {
-    icon: Brain,
-    title: "AI Diagnostic",
-    desc: "Tell us a habit in your own words. Our AI builds a custom 21-day journey just for you.",
-    outcome: "Know exactly why you fail habits.",
-    accent: "primary" as const,
-  },
-  {
-    icon: Bell,
-    title: "Context-Aware Nudges",
-    desc: "Smart reminders at the right time, in the right place — never spam.",
-    outcome: "Get reminders at the perfect moment.",
-    accent: "violet" as const,
-  },
-  {
-    icon: Compass,
-    title: "Adaptive AI Coach",
-    desc: "Real conversations, personalized micro-tasks, and slip recovery without judgement.",
-    outcome: "A coach in your pocket, 24/7.",
-    accent: "primary" as const,
-  },
-  {
-    icon: Users,
-    title: "Buddy System",
-    desc: "Invite a friend. Daily check-ins, emoji reactions, and shared wins keep you accountable.",
-    outcome: "Stay accountable without nagging.",
-    accent: "violet" as const,
-  },
-  {
-    icon: BarChart3,
-    title: "Identity Analytics",
-    desc: "Track who you're becoming — not just what you did. Behavior maps and consistency scores.",
-    outcome: "See who you're becoming, in real time.",
-    accent: "primary" as const,
-  },
-  {
-    icon: ShieldCheck,
-    title: "Streak Protection",
-    desc: "One Streak Freeze per week. Miss a day, keep your momentum, restart stronger.",
-    outcome: "Never lose progress again.",
-    accent: "violet" as const,
-  },
-];
 
 const stats = [
   { v: "63%", l: "complete the 21-day journey" },
@@ -231,59 +182,22 @@ const Index = () => {
         </p>
       </section>
 
-      {/* FEATURES */}
+      {/* FEATURES — interactive accordion / detail panel */}
       <section className="container mx-auto px-4 py-24">
         <div className="reveal mx-auto max-w-2xl text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">Features</p>
+          <p className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
+            <Sparkles className="h-3 w-3" />
+            The system
+          </p>
           <h2 className="font-display text-4xl font-bold sm:text-5xl">
-            Everything you need to <span className="text-gradient">become someone new.</span>
+            Six pillars. One <span className="text-gradient">new you.</span>
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Six pillars working together to rewire who you are — one day at a time.
+            Tap any pillar to see exactly how it works inside the app.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((f, i) => {
-            const isViolet = f.accent === "violet";
-            return (
-              <article
-                key={f.title}
-                className="reveal group hover-lift relative overflow-hidden rounded-3xl border border-border bg-gradient-card p-7 transition-all hover:border-primary/40"
-                style={{ transitionDelay: `${i * 70}ms` }}
-              >
-                <div
-                  className={`pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full blur-3xl transition-opacity duration-500 group-hover:opacity-100 ${
-                    isViolet ? "bg-violet/15 opacity-0" : "bg-primary/15 opacity-0"
-                  }`}
-                />
-                <div className="relative">
-                  <div
-                    className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl text-primary-foreground shadow-soft-glow transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-6deg] ${
-                      isViolet
-                        ? "bg-gradient-violet shadow-glow-violet"
-                        : "bg-gradient-primary"
-                    }`}
-                  >
-                    <f.icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-display text-xl font-bold">{f.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
-                  <div className="mt-4 flex items-center gap-1.5 border-t border-border/60 pt-4">
-                    <Sparkles
-                      className={`h-3.5 w-3.5 ${isViolet ? "text-violet" : "text-primary"}`}
-                    />
-                    <p
-                      className={`text-xs font-bold ${isViolet ? "text-violet" : "text-primary"}`}
-                    >
-                      {f.outcome}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+        <FeaturesAccordion />
       </section>
 
       {/* HOW IT WORKS — animated timeline */}
