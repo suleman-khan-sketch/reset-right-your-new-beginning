@@ -293,10 +293,10 @@ const HomeScreen = () => {
           ))}
         </div>
         <div className="mt-1.5 grid grid-cols-4 text-[8.5px] text-muted-foreground">
-          <span className="text-left text-primary">Level 3</span>
-          <span className="text-center text-primary">Level 3</span>
+          <span className="text-left text-primary">Level 1</span>
+          <span className="text-center text-primary">Level 2</span>
           <span className="text-center">Level 3</span>
-          <span className="text-right">Level 3</span>
+          <span className="text-right">Level 4</span>
         </div>
       </div>
 
