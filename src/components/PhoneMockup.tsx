@@ -65,35 +65,19 @@ const PhoneMockup = () => {
       <div className="absolute -inset-10 -z-10 bg-gradient-orb opacity-70 blur-3xl" />
 
       {/* Floating UI cards (decorative, hidden on small screens) */}
-      <FloatingCard
-        className="-left-8 top-16 animate-float"
+      <FloatingProgressCard
+        className="-left-10 top-20 animate-float"
         delay="0.2s"
-        icon={<Zap className="h-4 w-4" />}
-        iconWrap="bg-gradient-primary text-primary-foreground"
-        kicker="XP gained"
-        value="+80 XP"
       />
-      <FloatingCard
-        className="-right-6 top-32 animate-float-slow"
-        delay="0.5s"
-        icon={<Award className="h-4 w-4" />}
-        iconWrap="bg-warning/20 text-warning"
-        kicker="Badge"
-        value="7-Day Streak"
-      />
-      <FloatingCard
-        className="-left-6 bottom-40 animate-float"
-        delay="0.8s"
-        icon={<Flame className="h-4 w-4" />}
-        iconWrap="bg-orange-500/20 text-orange-400"
-        kicker="Current"
-        value="7 days"
+      <FloatingStreakCard
+        className="-right-8 bottom-32 animate-float-slow"
+        delay="0.6s"
       />
       <img
         src={mascot}
         alt=""
         aria-hidden
-        className="absolute -right-10 bottom-16 z-20 hidden h-20 w-20 animate-float drop-shadow-[0_0_20px_hsl(var(--primary)/0.5)] sm:block"
+        className="absolute -right-10 -top-6 z-20 hidden h-16 w-16 animate-float drop-shadow-[0_0_20px_hsl(var(--primary)/0.5)] sm:block"
         style={{ animationDelay: "0.3s" }}
       />
 
