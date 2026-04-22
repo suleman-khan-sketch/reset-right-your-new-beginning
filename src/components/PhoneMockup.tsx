@@ -434,71 +434,215 @@ const Bubble = ({ side, children }: { side: "left" | "right"; children: React.Re
 
 /* ============================== STATS ============================== */
 const StatsScreen = () => {
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const dates = [14, 15, 16, 17, 18, 19, 20];
+  const completed = [true, true, true, true, false, false, false];
+
   return (
-    <div className="space-y-2.5 px-4">
-      <div>
-        <p className="text-[9px] text-primary">Your Progress</p>
-        <p className="font-display text-sm font-bold">Day 7 of 21 Completed</p>
+    <div className="space-y-3 px-4">
+      {/* Header with mascot top-right */}
+      <div className="flex items-start justify-between">
+        <div>
+          <p className="text-[10px] font-semibold text-primary">Your Progress</p>
+          <p className="font-display text-[15px] font-extrabold leading-tight">
+            Day 7 of 21 Completed
+          </p>
+        </div>
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 ring-1 ring-primary/30">
+          <img src={mascot} alt="" className="h-6 w-6 drop-shadow-[0_0_8px_hsl(var(--primary)/0.6)]" />
+        </div>
       </div>
 
-      <div className="rounded-2xl border border-primary/20 bg-primary/5 p-2.5">
+      {/* Completion Calendar */}
+      <div className="rounded-2xl border border-primary/15 bg-card/50 p-3">
         <div className="flex items-center justify-between">
-          <p className="text-[10px] font-bold">Completion Calendar</p>
-          <Calendar className="h-3 w-3 text-primary" />
+          <p className="text-[12px] font-extrabold">Completion Calendar</p>
+          <Calendar className="h-3.5 w-3.5 text-primary" strokeWidth={2.2} />
         </div>
-        <p className="text-[8px] text-primary">7 / 21 Days Completed</p>
-        <div className="mt-2 grid grid-cols-7 gap-1 text-center text-[8px] text-muted-foreground">
-          {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
-            <span key={d}>{d}</span>
-          ))}
-          {[14, 15, 16, 17, 18, 19, 20].map((n, i) => (
+        <p className="mt-0.5 text-[9px] font-semibold text-primary">7 / 21 Days Completed</p>
+        <div className="mt-2.5 grid grid-cols-7 gap-1 text-center">
+          {days.map((d, i) => (
             <span
-              key={n}
-              className={`rounded-full py-1 text-[9px] font-bold ${
-                i >= 4 ? "bg-primary text-primary-foreground" : "border border-border/60"
+              key={d}
+              className={`text-[9px] font-medium ${
+                completed[i] ? "text-primary" : "text-muted-foreground"
               }`}
             >
-              {n}
+              {d}
             </span>
+          ))}
+          {dates.map((n, i) => (
+            <div key={n} className="flex justify-center">
+              <span
+                className={`flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-bold ${
+                  completed[i]
+                    ? "bg-primary text-primary-foreground"
+                    : "border border-border/70 text-foreground/80"
+                }`}
+              >
+                {n}
+              </span>
+            </div>
           ))}
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-2">
-        <div className="rounded-xl border border-border/70 bg-card/60 p-2">
-          <p className="text-[8px] text-muted-foreground">Current Streak</p>
-          <p className="font-display text-sm font-bold">7 Days</p>
+      {/* XP Progress chart */}
+      <div className="rounded-2xl border border-primary/15 bg-card/50 p-3">
+        <div className="flex items-center justify-between">
+          <p className="text-[12px] font-extrabold">XP Progress</p>
+          <span className="rounded-full border border-border/70 px-2 py-0.5 text-[9px] font-bold">
+            Level 3
+          </span>
         </div>
-        <div className="rounded-xl border border-border/70 bg-card/60 p-2">
-          <p className="text-[8px] text-muted-foreground">Longest Streak</p>
-          <p className="font-display text-sm font-bold">9 Days</p>
+
+        <div className="relative mt-3 h-[70px] w-full">
+          <svg viewBox="0 0 200 70" className="h-full w-full" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="xpFill" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stopColor="hsl(170 80% 54%)" stopOpacity="0.45" />
+                <stop offset="100%" stopColor="hsl(170 80% 54%)" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            {/* Dashed top reference line */}
+            <line
+              x1="0"
+              y1="22"
+              x2="200"
+              y2="22"
+              stroke="hsl(160 14% 30%)"
+              strokeWidth="0.6"
+              strokeDasharray="3 3"
+            />
+            {/* Vertical guide at +80 marker */}
+            <line
+              x1="135"
+              y1="22"
+              x2="135"
+              y2="65"
+              stroke="hsl(160 14% 30%)"
+              strokeWidth="0.6"
+            />
+            {/* Filled curve */}
+            <path
+              d="M0 60 C 20 58, 35 55, 50 50 S 80 38, 100 35 S 125 28, 140 25 C 160 22, 180 18, 200 12 L 200 70 L 0 70 Z"
+              fill="url(#xpFill)"
+            />
+            {/* Stroke line */}
+            <path
+              d="M0 60 C 20 58, 35 55, 50 50 S 80 38, 100 35 S 125 28, 140 25 C 160 22, 180 18, 200 12"
+              fill="none"
+              stroke="hsl(var(--primary))"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            {/* Marker dot at +80 */}
+            <circle cx="135" cy="25" r="3" fill="hsl(var(--primary))" stroke="white" strokeWidth="0.8" />
+          </svg>
+          {/* XP labels overlaid on the curve */}
+          <span className="absolute left-[3%] top-[42%] text-[7px] font-semibold text-foreground/80">
+            +50
+          </span>
+          <span className="absolute left-[18%] top-[35%] text-[7px] font-semibold text-foreground/80">
+            +80
+          </span>
+          <span className="absolute left-[40%] top-[22%] text-[7px] font-semibold text-foreground/80">
+            +20
+          </span>
+          <span className="absolute left-[55%] top-[12%] text-[7px] font-semibold text-foreground/80">
+            +50
+          </span>
+          <span className="absolute left-[64%] top-[2%] text-[7px] font-semibold text-foreground/80">
+            +80
+          </span>
+        </div>
+
+        <div className="mt-2 flex items-end justify-between">
+          <div>
+            <p className="text-[9px] text-muted-foreground">Total XP earned:</p>
+            <p className="font-display text-[16px] font-extrabold leading-tight">1250</p>
+          </div>
+          {/* Circular Level indicator */}
+          <div className="relative h-9 w-9">
+            <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
+              <circle cx="18" cy="18" r="15" fill="none" stroke="hsl(160 14% 18%)" strokeWidth="3" />
+              <circle
+                cx="18"
+                cy="18"
+                r="15"
+                fill="none"
+                stroke="hsl(var(--primary))"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeDasharray="94"
+                strokeDashoffset="38"
+              />
+            </svg>
+            <span className="absolute inset-0 flex items-center justify-center text-[10px] font-extrabold">
+              4
+            </span>
+          </div>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border/70 bg-card/60 p-2.5">
-        <p className="text-[8px] text-muted-foreground">Habit Health Trend</p>
-        <p className="text-[10px] font-bold">Habit Health Over Time</p>
-        <svg viewBox="0 0 200 70" className="mt-1 h-16 w-full">
-          <defs>
-            <linearGradient id="lg" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor="hsl(170 80% 54%)" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="hsl(170 80% 54%)" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M0 55 Q 25 50 40 40 T 80 25 T 120 15 T 160 28 T 200 45 L 200 70 L 0 70 Z"
-            fill="url(#lg)"
-          />
-          <path
-            d="M0 55 Q 25 50 40 40 T 80 25 T 120 15 T 160 28 T 200 45"
-            fill="none"
-            stroke="hsl(170 80% 54%)"
-            strokeWidth="2"
-            className="animate-draw"
-          />
-          <circle cx="120" cy="15" r="3" fill="white" />
-        </svg>
-        <p className="text-[9px] font-bold">Current Health: 78%</p>
+      {/* Streak card */}
+      <div className="rounded-2xl border border-primary/15 bg-card/50 p-2.5">
+        <div className="flex gap-2.5">
+          {/* Flame badge */}
+          <div className="flex w-[78px] shrink-0 flex-col items-center justify-center rounded-xl border border-primary/20 bg-[hsl(160_18%_8%)] py-2">
+            <Flame className="h-5 w-5 text-primary" fill="hsl(var(--primary))" strokeWidth={1.5} />
+            <p className="mt-1 font-display text-[12px] font-extrabold">03 days</p>
+            <p className="text-[8px] font-semibold text-primary">Steps Streak</p>
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <p className="text-[9px] text-muted-foreground">Longest: 9 Days</p>
+            <p className="text-[11px] font-extrabold text-primary">Current Streak: 7 Days</p>
+
+            {/* Progress bar with dot markers */}
+            <div className="relative mt-1.5 h-[5px] rounded-full bg-[hsl(160_10%_18%)]">
+              <div
+                className="absolute left-0 top-0 h-full rounded-full bg-primary"
+                style={{ width: "57%" }}
+              />
+              {[25, 50, 75].map((p, i) => (
+                <span
+                  key={p}
+                  className={`absolute top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full ${
+                    i < 1 ? "bg-[hsl(170_60%_18%)]" : "bg-[hsl(160_10%_30%)]"
+                  }`}
+                  style={{ left: `${p}%` }}
+                />
+              ))}
+            </div>
+
+            {/* Day-of-week check row */}
+            <div className="mt-1.5 grid grid-cols-7 gap-0.5 text-center">
+              {days.map((d, i) => (
+                <div key={d} className="flex flex-col items-center gap-0.5">
+                  <div
+                    className={`flex h-3.5 w-3.5 items-center justify-center rounded-full ${
+                      completed[i]
+                        ? "bg-primary/20 ring-1 ring-primary/60"
+                        : "bg-[hsl(160_10%_18%)] ring-1 ring-border/60"
+                    }`}
+                  >
+                    {completed[i] && (
+                      <Check className="h-2 w-2 text-primary" strokeWidth={4} />
+                    )}
+                  </div>
+                  <span
+                    className={`text-[7.5px] font-medium ${
+                      completed[i] ? "text-foreground/80" : "text-muted-foreground"
+                    }`}
+                  >
+                    {d}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
