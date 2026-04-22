@@ -18,50 +18,6 @@ import avatar4 from "@/assets/avatar-4.jpg";
 
 const avatars = [avatar1, avatar2, avatar3, avatar4];
 
-const features = [
-  {
-    icon: Brain,
-    title: "AI Diagnostic",
-    desc: "Tell us a habit in your own words. Our AI builds a custom 21-day journey just for you.",
-    outcome: "Know exactly why you fail habits.",
-    accent: "primary" as const,
-  },
-  {
-    icon: Bell,
-    title: "Context-Aware Nudges",
-    desc: "Smart reminders at the right time, in the right place — never spam.",
-    outcome: "Get reminders at the perfect moment.",
-    accent: "violet" as const,
-  },
-  {
-    icon: Compass,
-    title: "Adaptive AI Coach",
-    desc: "Real conversations, personalized micro-tasks, and slip recovery without judgement.",
-    outcome: "A coach in your pocket, 24/7.",
-    accent: "primary" as const,
-  },
-  {
-    icon: Users,
-    title: "Buddy System",
-    desc: "Invite a friend. Daily check-ins, emoji reactions, and shared wins keep you accountable.",
-    outcome: "Stay accountable without nagging.",
-    accent: "violet" as const,
-  },
-  {
-    icon: BarChart3,
-    title: "Identity Analytics",
-    desc: "Track who you're becoming — not just what you did. Behavior maps and consistency scores.",
-    outcome: "See who you're becoming, in real time.",
-    accent: "primary" as const,
-  },
-  {
-    icon: ShieldCheck,
-    title: "Streak Protection",
-    desc: "One Streak Freeze per week. Miss a day, keep your momentum, restart stronger.",
-    outcome: "Never lose progress again.",
-    accent: "violet" as const,
-  },
-];
 
 const stats = [
   { v: "63%", l: "complete the 21-day journey" },
