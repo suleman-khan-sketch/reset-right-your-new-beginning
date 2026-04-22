@@ -19,6 +19,10 @@ import {
   Bell,
 } from "lucide-react";
 import mascot from "@/assets/mascot.png";
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
+import avatar4 from "@/assets/avatar-4.jpg";
 
 /**
  * Animated, clickable iPhone mockup with 5 tabs matching the real Reset app:
@@ -849,32 +853,28 @@ const BuddiesScreen = () => {
   const buddies = [
     {
       name: "Suleman Ahmadzai",
-      initials: "SA",
-      gradient: "from-emerald-400 to-teal-600",
+      photo: avatar2,
       status: "ACTIVE",
       statusBg: "bg-primary/15 text-primary",
       action: "Nudge",
     },
     {
       name: "Davis Curtis",
-      initials: "DC",
-      gradient: "from-blue-400 to-indigo-600",
+      photo: avatar4,
       status: "PENDING",
       statusBg: "bg-warning/15 text-warning",
       action: "Nudge",
     },
     {
       name: "Sara Lee",
-      initials: "SL",
-      gradient: "from-pink-400 to-rose-600",
+      photo: avatar3,
       status: "COMPLETED",
       statusBg: "bg-primary/15 text-primary",
       action: "View",
     },
     {
       name: "Mira K.",
-      initials: "MK",
-      gradient: "from-amber-400 to-orange-600",
+      photo: avatar1,
       status: "MISSED",
       statusBg: "bg-destructive/15 text-destructive",
       action: "Nudge",
@@ -911,11 +911,12 @@ const BuddiesScreen = () => {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${b.gradient} text-[10px] font-bold text-white ring-2 ring-white/10 shadow-soft-glow`}
-                >
-                  {b.initials}
-                </div>
+                <img
+                  src={b.photo}
+                  alt={b.name}
+                  loading="lazy"
+                  className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-primary/30 shadow-soft-glow"
+                />
                 <div>
                   <p className="text-[11px] font-bold">{b.name}</p>
                   <span className="mt-0.5 inline-flex items-center gap-1 rounded-full bg-orange-500/20 px-1.5 py-0.5 text-[8px] text-orange-300">
