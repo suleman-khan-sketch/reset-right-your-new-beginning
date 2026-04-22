@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import PhoneMockup from "@/components/PhoneMockup";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
+import FeaturesAccordion from "@/components/FeaturesAccordion";
 import mascot from "@/assets/mascot.png";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
