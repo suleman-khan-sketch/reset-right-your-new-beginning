@@ -182,19 +182,15 @@ const Index = () => {
         </p>
       </section>
 
-      {/* FEATURES — interactive accordion / detail panel */}
+      {/* FEATURES — minimal accordion */}
       <section className="container mx-auto px-4 py-24">
         <div className="reveal mx-auto max-w-2xl text-center">
-          <p className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
-            <Sparkles className="h-3 w-3" />
-            The system
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">
+            Features
           </p>
           <h2 className="font-display text-4xl font-bold sm:text-5xl">
             Six pillars. One <span className="text-gradient">new you.</span>
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Tap any pillar to see exactly how it works inside the app.
-          </p>
         </div>
 
         <FeaturesAccordion />
