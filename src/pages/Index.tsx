@@ -2,13 +2,7 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Sparkles,
-  Brain,
-  Bell,
-  Compass,
-  Users,
-  BarChart3,
   Star,
-  ShieldCheck,
   PlayCircle,
   Check,
   ShieldOff,
