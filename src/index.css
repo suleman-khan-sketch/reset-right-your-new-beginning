@@ -206,8 +206,20 @@
   .animate-pulse-glow {
     animation: pulse-glow 3s ease-in-out infinite;
   }
+  .animate-pulse-glow-violet {
+    animation: pulse-glow-violet 3s ease-in-out infinite;
+  }
   .animate-orbit {
     animation: orbit 18s linear infinite;
+  }
+  .animate-xp-fill {
+    animation: xp-fill 4.5s var(--ease-smooth) infinite;
+  }
+  .animate-streak-glow {
+    animation: streak-glow 2.4s ease-in-out infinite;
+  }
+  .animate-tooltip-in {
+    animation: tooltip-in 0.6s var(--ease-spring) both;
   }
   .animate-shimmer {
     background: linear-gradient(110deg, transparent 35%, hsl(var(--primary) / 0.25) 50%, transparent 65%);
@@ -302,4 +314,26 @@
 
 @keyframes draw {
   to { stroke-dashoffset: 0 }
+}
+
+@keyframes pulse-glow-violet {
+  0%, 100% { box-shadow: 0 0 25px hsl(268 85% 68% / 0.3) }
+  50% { box-shadow: 0 0 55px hsl(268 85% 68% / 0.6) }
+}
+
+@keyframes xp-fill {
+  0% { width: 0% }
+  60% { width: 78% }
+  80% { width: 78% }
+  100% { width: 0% }
+}
+
+@keyframes streak-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px hsl(35 95% 60% / 0.5)) }
+  50% { filter: drop-shadow(0 0 12px hsl(35 95% 60% / 0.95)) }
+}
+
+@keyframes tooltip-in {
+  0% { opacity: 0; transform: translateY(8px) scale(0.92) }
+  100% { opacity: 1; transform: translateY(0) scale(1) }
 }
