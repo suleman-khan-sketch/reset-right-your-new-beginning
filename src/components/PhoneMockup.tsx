@@ -16,6 +16,7 @@ import {
   Smile,
   Send,
   Crown,
+  Bell,
 } from "lucide-react";
 import mascot from "@/assets/mascot.png";
 
