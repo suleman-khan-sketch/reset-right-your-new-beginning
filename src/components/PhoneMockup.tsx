@@ -146,47 +146,82 @@ const HomeScreen = () => {
 
   return (
     <div className="space-y-3 px-4">
-      {/* Header row — plain teal avatar circle, like the real app */}
+      {/* Header row — avatar with photo + bell on right (iOS app style) */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="h-10 w-10 rounded-full bg-[hsl(170_30%_22%)] ring-1 ring-primary/20" />
+          <div className="relative h-10 w-10 overflow-hidden rounded-full bg-gradient-to-br from-[hsl(170_30%_22%)] to-[hsl(170_30%_14%)] ring-2 ring-primary/40">
+            {/* stylized avatar silhouette */}
+            <svg viewBox="0 0 40 40" className="h-full w-full">
+              <circle cx="20" cy="15" r="6" fill="hsl(30 35% 60%)" />
+              <path d="M6 40 Q 20 22 34 40 Z" fill="hsl(220 25% 25%)" />
+              <path d="M14 11 Q 20 6 26 11 L 26 14 Q 20 12 14 14 Z" fill="hsl(20 15% 15%)" />
+            </svg>
+          </div>
           <div>
             <p className="text-[10px] font-semibold text-primary leading-tight">Good Morning, Jimmy</p>
             <p className="font-display text-[15px] font-extrabold leading-tight">Day 7 of 21</p>
           </div>
         </div>
-        <div className="flex items-center gap-1 text-[11px] font-semibold">
-          Streak 7 <Flame className="h-3 w-3 text-orange-400" fill="currentColor" />
-        </div>
+        <button
+          aria-label="Notifications"
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-[hsl(160_18%_10%)] ring-1 ring-primary/30"
+        >
+          <Bell className="h-3.5 w-3.5 text-primary" fill="currentColor" />
+        </button>
       </div>
 
-      {/* Habit Health gauge — large thick mint arc centered in card */}
-      <div className="relative flex h-[155px] items-center justify-center overflow-hidden rounded-2xl border border-primary/15 bg-card/50">
-        <svg viewBox="0 0 200 130" className="h-full w-full px-3">
-          {/* Track */}
+      {/* Habit Health gauge — multi-color segmented arc + dotted track + mascot */}
+      <div className="relative flex h-[170px] items-center justify-center overflow-hidden rounded-2xl border border-primary/15 bg-card/50">
+        <svg viewBox="0 0 220 140" className="h-full w-full px-2">
+          {/* Dotted inner track */}
           <path
-            d="M30 110 A 70 70 0 0 1 170 110"
+            d="M40 115 A 70 70 0 0 1 180 115"
             fill="none"
-            stroke="hsl(160 14% 14%)"
-            strokeWidth="16"
+            stroke="hsl(160 8% 35%)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray="1 6"
+          />
+          {/* Segmented colored arc — radius 82, total length ~258 */}
+          {/* Red segment */}
+          <path
+            d="M28 115 A 82 82 0 0 1 70 47"
+            fill="none"
+            stroke="#E07B6F"
+            strokeWidth="14"
             strokeLinecap="round"
           />
-          {/* Mint arc — ~78% of semicircle */}
+          {/* Yellow segment */}
           <path
-            d="M30 110 A 70 70 0 0 1 170 110"
+            d="M82 41 A 82 82 0 0 1 158 45"
+            fill="none"
+            stroke="#F1D88A"
+            strokeWidth="14"
+            strokeLinecap="round"
+          />
+          {/* Orange small segment */}
+          <path
+            d="M163 48 A 82 82 0 0 1 178 60"
+            fill="none"
+            stroke="#E89A55"
+            strokeWidth="14"
+            strokeLinecap="round"
+          />
+          {/* Mint end segment */}
+          <path
+            d="M188 76 A 82 82 0 0 1 192 115"
             fill="none"
             stroke="hsl(var(--primary))"
-            strokeWidth="16"
+            strokeWidth="14"
             strokeLinecap="round"
-            strokeDasharray="220"
-            strokeDashoffset="48"
-            className="animate-draw"
           />
-          {/* End indicator dot — top right of arc */}
-          <circle cx="166" cy="50" r="6" fill="white" />
+          {/* White progress indicator dot at orange/mint join */}
+          <circle cx="184" cy="68" r="8" fill="white" stroke="#E89A55" strokeWidth="2.5" />
         </svg>
-        <div className="absolute inset-x-0 bottom-6 text-center">
-          <p className="text-[10px] text-muted-foreground">Habit Health</p>
+        {/* Mascot + label centered */}
+        <div className="absolute inset-x-0 top-7 text-center">
+          <img src={mascot} alt="" className="mx-auto h-7 w-7 drop-shadow-[0_0_10px_hsl(var(--primary)/0.6)]" />
+          <p className="mt-1 text-[10px] text-muted-foreground">Habit Health</p>
           <p className="font-display text-[26px] font-extrabold text-primary leading-none mt-0.5">78%</p>
         </div>
       </div>
