@@ -425,17 +425,28 @@ const ChatScreen = () => {
           Accept Challenge
         </button>
       </div>
-
-      {/* Input */}
-      <div className="flex items-center gap-1.5 rounded-full border border-border/70 bg-card/60 px-2 py-1.5">
-        <Smile className="h-3 w-3 text-muted-foreground" />
-        <span className="flex-1 text-[9px] text-muted-foreground">Type message</span>
-        <Paperclip className="h-3 w-3 text-muted-foreground" />
-        <div className="h-5 w-5 rounded-full bg-primary" />
-      </div>
     </div>
   );
 };
+
+/* Chat input — anchored above the bottom nav */
+const ChatInput = () => (
+  <div className="absolute inset-x-3 bottom-[68px] z-20">
+    <div className="flex items-center gap-1.5 rounded-full border border-border/70 bg-card/90 px-2.5 py-1.5 backdrop-blur-xl shadow-elegant">
+      <Smile className="h-3 w-3 text-muted-foreground" />
+      <span className="flex-1 truncate text-[9px] text-muted-foreground">
+        Type message
+      </span>
+      <Paperclip className="h-3 w-3 text-muted-foreground" />
+      <button
+        aria-label="Send"
+        className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-primary text-primary-foreground shadow-[0_0_12px_hsl(var(--primary)/0.6)] transition-transform hover:scale-105 active:scale-95"
+      >
+        <Send className="h-3 w-3 -translate-x-[1px] translate-y-[1px]" strokeWidth={2.5} />
+      </button>
+    </div>
+  </div>
+);
 
 const Bubble = ({ side, children }: { side: "left" | "right"; children: React.ReactNode }) => (
   <div className={`flex items-end gap-1.5 ${side === "right" ? "flex-row-reverse" : ""}`}>
