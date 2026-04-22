@@ -171,58 +171,92 @@ const HomeScreen = () => {
       </div>
 
       {/* Habit Health gauge — multi-color segmented arc + dotted track + mascot */}
-      <div className="relative flex h-[170px] items-center justify-center overflow-hidden rounded-2xl border border-primary/15 bg-card/50">
-        <svg viewBox="0 0 220 140" className="h-full w-full px-2">
-          {/* Dotted inner track */}
+      <div className="relative flex h-[185px] items-end justify-center overflow-hidden rounded-2xl border border-primary/15 bg-card/50 pb-2">
+        <svg viewBox="0 0 220 130" className="h-full w-full">
+          {/*
+            Semicircle center (110, 120), radius 80.
+            Path goes from (30,120) → top → (190,120). Length = π*80 ≈ 251.33.
+            Segments (in order along the path):
+              red    25%  → 0   to 63
+              yellow 38%  → 63  to 158
+              orange 10%  → 158 to 183
+              mint   27%  → 183 to 251
+            We render each as a separate dasharray on the same path.
+          */}
+
+          {/* Dotted inner track (smaller radius) */}
           <path
-            d="M40 115 A 70 70 0 0 1 180 115"
+            d="M40 120 A 70 70 0 0 1 180 120"
             fill="none"
-            stroke="hsl(160 8% 35%)"
-            strokeWidth="2"
+            stroke="hsl(0 0% 75% / 0.45)"
+            strokeWidth="1.5"
             strokeLinecap="round"
-            strokeDasharray="1 6"
+            strokeDasharray="1.2 5"
           />
-          {/* Segmented colored arc — radius 82, total length ~258 */}
+
           {/* Red segment */}
           <path
-            d="M28 115 A 82 82 0 0 1 70 47"
+            d="M30 120 A 80 80 0 0 1 190 120"
             fill="none"
             stroke="#E07B6F"
             strokeWidth="14"
             strokeLinecap="round"
+            strokeDasharray="60 251"
+            strokeDashoffset="0"
+            pathLength="251"
           />
           {/* Yellow segment */}
           <path
-            d="M82 41 A 82 82 0 0 1 158 45"
+            d="M30 120 A 80 80 0 0 1 190 120"
             fill="none"
             stroke="#F1D88A"
             strokeWidth="14"
             strokeLinecap="round"
+            strokeDasharray="92 251"
+            strokeDashoffset="-66"
+            pathLength="251"
           />
-          {/* Orange small segment */}
+          {/* Orange segment */}
           <path
-            d="M163 48 A 82 82 0 0 1 178 60"
+            d="M30 120 A 80 80 0 0 1 190 120"
             fill="none"
             stroke="#E89A55"
             strokeWidth="14"
             strokeLinecap="round"
+            strokeDasharray="22 251"
+            strokeDashoffset="-162"
+            pathLength="251"
           />
-          {/* Mint end segment */}
+          {/* Mint segment */}
           <path
-            d="M188 76 A 82 82 0 0 1 192 115"
+            d="M30 120 A 80 80 0 0 1 190 120"
             fill="none"
             stroke="hsl(var(--primary))"
             strokeWidth="14"
             strokeLinecap="round"
+            strokeDasharray="60 251"
+            strokeDashoffset="-188"
+            pathLength="251"
           />
-          {/* White progress indicator dot at orange/mint join */}
-          <circle cx="184" cy="68" r="8" fill="white" stroke="#E89A55" strokeWidth="2.5" />
+
+          {/* White progress indicator dot at orange/mint join (~75% along arc) */}
+          {/* angle from left = 180° - (188/251)*180 ≈ 45° → x = 110 + 80*cos(45°), y = 120 - 80*sin(45°) */}
+          <circle cx="166.5" cy="63.5" r="8" fill="white" />
         </svg>
-        {/* Mascot + label centered */}
-        <div className="absolute inset-x-0 top-7 text-center">
-          <img src={mascot} alt="" className="mx-auto h-7 w-7 drop-shadow-[0_0_10px_hsl(var(--primary)/0.6)]" />
-          <p className="mt-1 text-[10px] text-muted-foreground">Habit Health</p>
-          <p className="font-display text-[26px] font-extrabold text-primary leading-none mt-0.5">78%</p>
+
+        {/* Mascot above text, centered */}
+        <div className="absolute inset-x-0 top-6 text-center">
+          <img
+            src={mascot}
+            alt=""
+            className="mx-auto h-6 w-6 drop-shadow-[0_0_10px_hsl(var(--primary)/0.7)]"
+          />
+        </div>
+        <div className="absolute inset-x-0 bottom-8 text-center">
+          <p className="text-[10px] text-muted-foreground">Habit Health</p>
+          <p className="font-display text-[26px] font-extrabold text-primary leading-none mt-0.5">
+            78%
+          </p>
         </div>
       </div>
 
