@@ -214,6 +214,22 @@
   .animate-tick {
     animation: tick 0.5s var(--ease-spring);
   }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s var(--ease-smooth) both;
+  }
+  .animate-fade-in {
+    animation: fade-in 0.4s var(--ease-smooth) both;
+  }
+  .animate-scale-in {
+    animation: scale-in 0.5s var(--ease-spring) both;
+  }
+  .animate-draw {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw 2.4s var(--ease-smooth) forwards;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
   .perspective-1000 {
     perspective: 1000px;
