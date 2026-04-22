@@ -140,131 +140,121 @@ const PhoneMockup = () => {
 
 /* ============================== HOME ============================== */
 const HomeScreen = () => {
-  const [tasks, setTasks] = useState([true, true, false]);
-  useEffect(() => {
-    const id = setInterval(() => {
-      setTasks((p) => [p[0], p[1], !p[2]]);
-    }, 2400);
-    return () => clearInterval(id);
-  }, []);
+  // Match real app: all 3 tasks checked
+  const tasks = [true, true, true];
 
   return (
     <div className="space-y-3 px-4">
-      {/* Header row */}
+      {/* Header row — plain teal avatar circle, like the real app */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary/40 to-primary-deep ring-2 ring-primary/30" />
+        <div className="flex items-center gap-2.5">
+          <div className="h-10 w-10 rounded-full bg-[hsl(170_30%_22%)] ring-1 ring-primary/20" />
           <div>
-            <p className="text-[9px] font-medium text-primary">Good Morning, Jimmy</p>
-            <p className="font-display text-sm font-bold leading-tight">Day 7 of 21</p>
+            <p className="text-[10px] font-semibold text-primary leading-tight">Good Morning, Jimmy</p>
+            <p className="font-display text-[15px] font-extrabold leading-tight">Day 7 of 21</p>
           </div>
         </div>
-        <div className="flex items-center gap-1 text-[10px] font-semibold">
+        <div className="flex items-center gap-1 text-[11px] font-semibold">
           Streak 7 <Flame className="h-3 w-3 text-orange-400" fill="currentColor" />
         </div>
       </div>
 
-      {/* Habit Health gauge — thick mint arc */}
-      <div className="relative flex h-36 items-end justify-center overflow-hidden rounded-2xl border border-primary/20 bg-card/40">
-        <svg viewBox="0 0 200 120" className="h-full w-full">
+      {/* Habit Health gauge — large thick mint arc centered in card */}
+      <div className="relative flex h-[155px] items-center justify-center overflow-hidden rounded-2xl border border-primary/15 bg-card/50">
+        <svg viewBox="0 0 200 130" className="h-full w-full px-3">
+          {/* Track */}
           <path
-            d="M25 105 A 75 75 0 0 1 175 105"
+            d="M30 110 A 70 70 0 0 1 170 110"
             fill="none"
-            stroke="hsl(var(--primary) / 0.15)"
-            strokeWidth="14"
+            stroke="hsl(160 14% 14%)"
+            strokeWidth="16"
             strokeLinecap="round"
           />
+          {/* Mint arc — ~78% of semicircle */}
           <path
-            d="M25 105 A 75 75 0 0 1 175 105"
+            d="M30 110 A 70 70 0 0 1 170 110"
             fill="none"
             stroke="hsl(var(--primary))"
-            strokeWidth="14"
+            strokeWidth="16"
             strokeLinecap="round"
+            strokeDasharray="220"
+            strokeDashoffset="48"
             className="animate-draw"
-            strokeDasharray="236"
-            strokeDashoffset="52"
           />
-          <circle cx="170" cy="42" r="6" fill="white" />
+          {/* End indicator dot — top right of arc */}
+          <circle cx="166" cy="50" r="6" fill="white" />
         </svg>
-        <div className="absolute inset-x-0 bottom-4 text-center">
-          <p className="text-[9px] text-muted-foreground">Habit Health</p>
-          <p className="font-display text-2xl font-bold text-primary">78%</p>
+        <div className="absolute inset-x-0 bottom-6 text-center">
+          <p className="text-[10px] text-muted-foreground">Habit Health</p>
+          <p className="font-display text-[26px] font-extrabold text-primary leading-none mt-0.5">78%</p>
         </div>
       </div>
 
       {/* XP today */}
-      <div className="rounded-2xl border border-border/70 bg-card/60 p-2.5">
-        <div className="flex items-center justify-between text-[10px]">
+      <div className="rounded-2xl border border-border/70 bg-card/60 p-3">
+        <div className="flex items-center justify-between text-[11px]">
           <span className="text-muted-foreground">XP Today:</span>
-          <span className="font-bold">+120</span>
+          <span className="font-extrabold">+120</span>
         </div>
-        <div className="relative mt-1.5 h-1.5 overflow-hidden rounded-full bg-border">
+        <div className="relative mt-2 h-[5px] rounded-full bg-[hsl(160_10%_18%)]">
           <div
-            className="h-full rounded-full bg-primary transition-all duration-700"
+            className="absolute left-0 top-0 h-full rounded-full bg-primary"
             style={{ width: "62%" }}
           />
-          {[25, 50, 75].map((p) => (
+          {/* Level marker dots sit ON the bar */}
+          {[12.5, 37.5, 62.5, 87.5].map((p, i) => (
             <span
               key={p}
-              className="absolute top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-background/80"
+              className={`absolute top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full ${
+                i < 2 ? "bg-[hsl(170_60%_18%)]" : "bg-[hsl(160_10%_28%)]"
+              }`}
               style={{ left: `${p}%` }}
             />
           ))}
         </div>
-        <div className="mt-1 flex justify-between text-[8px] text-muted-foreground">
-          <span>Level 3</span>
-          <span>Level 3</span>
-          <span>Level 3</span>
-          <span>Level 3</span>
+        <div className="mt-1.5 grid grid-cols-4 text-[8.5px] text-muted-foreground">
+          <span className="text-left text-primary">Level 3</span>
+          <span className="text-center text-primary">Level 3</span>
+          <span className="text-center">Level 3</span>
+          <span className="text-right">Level 3</span>
         </div>
       </div>
 
       {/* Next badge */}
-      <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-card/60 px-3 py-2 text-[10px]">
+      <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-card/60 px-3 py-2.5 text-[11px]">
         <span className="text-muted-foreground">Next Badge:</span>
-        <span className="font-bold">7-Day Streak 🏅</span>
+        <span className="font-extrabold">7-Day Streak 🏅</span>
       </div>
 
-      {/* Today's checklist */}
-      <div className="rounded-2xl border border-primary/20 bg-card/60 p-3">
-        <p className="mb-2 text-[11px] font-bold">Today's Checklist</p>
-        <div className="space-y-2">
+      {/* Today's checklist — all checked, full progress, line-through */}
+      <div className="rounded-2xl border border-primary/15 bg-card/60 p-3">
+        <p className="mb-2.5 text-[11.5px] font-extrabold">Today's Checklist</p>
+        <div className="space-y-2.5">
           {[
             { l: "Meditate 5 min", xp: "+10 XP" },
             { l: "Read 10 pages", xp: "+10 XP" },
             { l: "Go for a walk", xp: "+10 XP" },
           ].map((t, i) => (
             <div key={i} className="flex items-center gap-2">
-              <div
-                className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-md border transition-all ${
-                  tasks[i]
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-transparent"
-                }`}
-              >
-                {tasks[i] && <Check className="h-2.5 w-2.5 animate-tick" strokeWidth={3} />}
+              <div className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/15 ring-1 ring-primary/40">
+                <Check className="h-2.5 w-2.5 text-primary" strokeWidth={3.5} />
               </div>
               <div className="flex-1">
-                <div className="flex items-center justify-between text-[9px]">
-                  <span className={tasks[i] ? "line-through opacity-60" : ""}>{t.l}</span>
+                <div className="flex items-center justify-between text-[9.5px]">
+                  <span className="line-through text-muted-foreground">{t.l}</span>
                   <span className="font-semibold text-foreground/90">{t.xp}</span>
                 </div>
-                <div className="mt-1 h-[3px] overflow-hidden rounded-full bg-border">
-                  <div
-                    className="h-full rounded-full bg-primary transition-all duration-700"
-                    style={{ width: tasks[i] ? "100%" : `${30 + i * 20}%` }}
-                  />
-                </div>
+                <div className="mt-1 h-[2px] rounded-full bg-primary" />
               </div>
             </div>
           ))}
         </div>
-        <button className="mt-3 w-full rounded-xl border border-primary/40 py-2 text-[10px] font-semibold text-primary">
+        <button className="mt-3 w-full rounded-xl border border-primary/50 py-2 text-[11px] font-bold text-primary">
           View Today Details
         </button>
       </div>
 
-      <button className="w-full rounded-xl bg-white py-2.5 text-[11px] font-bold text-black">
+      <button className="w-full rounded-2xl bg-white py-2.5 text-[12px] font-extrabold text-black shadow-[0_0_25px_hsl(0_0%_100%/0.1)]">
         Complete Today
       </button>
     </div>
