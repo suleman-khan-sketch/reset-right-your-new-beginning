@@ -36,6 +36,11 @@
     --accent: 170 80% 54%;
     --accent-foreground: 160 25% 6%;
 
+    /* Secondary brand accent — soft violet for contrast against mint */
+    --violet: 268 85% 68%;
+    --violet-foreground: 0 0% 98%;
+    --violet-deep: 262 70% 52%;
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
@@ -50,13 +55,17 @@
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(170 80% 54%) 0%, hsl(165 90% 65%) 100%);
+    --gradient-violet: linear-gradient(135deg, hsl(268 85% 68%) 0%, hsl(290 80% 70%) 100%);
+    --gradient-duo: linear-gradient(135deg, hsl(170 80% 54%) 0%, hsl(268 85% 68%) 100%);
     --gradient-radial: radial-gradient(ellipse at top, hsl(170 80% 54% / 0.18), transparent 60%);
-    --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(170 80% 54% / 0.25), transparent 70%);
+    --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(170 80% 54% / 0.2), transparent 70%), radial-gradient(ellipse 50% 40% at 85% 30%, hsl(268 85% 68% / 0.12), transparent 70%);
     --gradient-card: linear-gradient(180deg, hsl(160 18% 9% / 0.8), hsl(160 18% 6% / 0.4));
     --gradient-orb: radial-gradient(circle, hsl(170 80% 54% / 0.5), transparent 70%);
+    --gradient-orb-violet: radial-gradient(circle, hsl(268 85% 68% / 0.45), transparent 70%);
 
     /* Shadows */
     --shadow-glow: 0 0 60px hsl(170 80% 54% / 0.45);
+    --shadow-glow-violet: 0 0 50px hsl(268 85% 68% / 0.4);
     --shadow-soft-glow: 0 0 30px hsl(170 80% 54% / 0.25);
     --shadow-elegant: 0 25px 60px -15px hsl(170 80% 54% / 0.35);
     --shadow-card: 0 8px 30px -10px hsl(160 50% 2% / 0.6);
@@ -93,8 +102,9 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, sans-serif;
     background-image:
-      radial-gradient(ellipse 60% 40% at 20% 0%, hsl(170 80% 54% / 0.08), transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 50%, hsl(170 80% 54% / 0.06), transparent 60%);
+      radial-gradient(ellipse 60% 40% at 20% 0%, hsl(170 80% 54% / 0.07), transparent 60%),
+      radial-gradient(ellipse 50% 35% at 85% 35%, hsl(268 85% 68% / 0.06), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 15% 75%, hsl(170 80% 54% / 0.04), transparent 60%);
     background-attachment: fixed;
   }
 
@@ -196,8 +206,20 @@
   .animate-pulse-glow {
     animation: pulse-glow 3s ease-in-out infinite;
   }
+  .animate-pulse-glow-violet {
+    animation: pulse-glow-violet 3s ease-in-out infinite;
+  }
   .animate-orbit {
     animation: orbit 18s linear infinite;
+  }
+  .animate-xp-fill {
+    animation: xp-fill 4.5s var(--ease-smooth) infinite;
+  }
+  .animate-streak-glow {
+    animation: streak-glow 2.4s ease-in-out infinite;
+  }
+  .animate-tooltip-in {
+    animation: tooltip-in 0.6s var(--ease-spring) both;
   }
   .animate-shimmer {
     background: linear-gradient(110deg, transparent 35%, hsl(var(--primary) / 0.25) 50%, transparent 65%);
@@ -292,4 +314,26 @@
 
 @keyframes draw {
   to { stroke-dashoffset: 0 }
+}
+
+@keyframes pulse-glow-violet {
+  0%, 100% { box-shadow: 0 0 25px hsl(268 85% 68% / 0.3) }
+  50% { box-shadow: 0 0 55px hsl(268 85% 68% / 0.6) }
+}
+
+@keyframes xp-fill {
+  0% { width: 0% }
+  60% { width: 78% }
+  80% { width: 78% }
+  100% { width: 0% }
+}
+
+@keyframes streak-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px hsl(35 95% 60% / 0.5)) }
+  50% { filter: drop-shadow(0 0 12px hsl(35 95% 60% / 0.95)) }
+}
+
+@keyframes tooltip-in {
+  0% { opacity: 0; transform: translateY(8px) scale(0.92) }
+  100% { opacity: 1; transform: translateY(0) scale(1) }
 }

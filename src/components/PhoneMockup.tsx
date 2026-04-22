@@ -17,6 +17,7 @@ import {
   Send,
   Crown,
   Bell,
+  Sparkles,
 } from "lucide-react";
 import mascot from "@/assets/mascot.png";
 import avatar1 from "@/assets/avatar-1.jpg";
@@ -70,6 +71,27 @@ const PhoneMockup = () => {
         className="absolute -right-10 -top-6 z-20 hidden h-16 w-16 animate-float drop-shadow-[0_0_20px_hsl(var(--primary)/0.5)] sm:block"
         style={{ animationDelay: "0.3s" }}
       />
+
+      {/* Floating AI tooltip — feels alive + intelligent */}
+      <div className="absolute -left-6 top-32 z-20 hidden max-w-[210px] animate-tooltip-in sm:block">
+        <div className="relative rounded-2xl border border-violet/30 bg-card/90 p-3 shadow-glow-violet backdrop-blur-md">
+          <div className="mb-1 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-violet">
+            <Sparkles className="h-3 w-3" />
+            AI Detected
+          </div>
+          <p className="text-[11px] leading-snug text-foreground">
+            Late-night scrolling pattern → suggested <span className="font-semibold text-primary">Sleep Anchor</span> at 10:30 PM.
+          </p>
+          <span className="absolute -right-1.5 top-6 h-3 w-3 rotate-45 border-r border-t border-violet/30 bg-card/90" />
+        </div>
+      </div>
+
+      {/* Floating XP burst — micro-animation */}
+      <div className="absolute -right-4 top-48 z-20 hidden animate-float sm:block" style={{ animationDelay: "1.2s" }}>
+        <div className="rounded-full border border-primary/40 bg-card/90 px-3 py-1.5 shadow-soft-glow backdrop-blur-md">
+          <span className="text-[11px] font-extrabold text-primary">+10 XP</span>
+        </div>
+      </div>
 
       <div className="relative mx-auto w-full max-w-[320px] animate-float">
         <div className="relative aspect-[9/19.5] rounded-[3rem] border border-border/80 bg-gradient-to-b from-[hsl(160_20%_8%)] to-[hsl(160_25%_4%)] p-2 shadow-elegant ring-1 ring-primary/10">
@@ -277,8 +299,7 @@ const HomeScreen = () => {
         </div>
         <div className="relative mt-2 h-[5px] rounded-full bg-[hsl(160_10%_18%)]">
           <div
-            className="absolute left-0 top-0 h-full rounded-full bg-primary"
-            style={{ width: "62%" }}
+            className="absolute left-0 top-0 h-full rounded-full bg-gradient-primary animate-xp-fill"
           />
           {/* Level marker dots sit ON the bar */}
           {[12.5, 37.5, 62.5, 87.5].map((p, i) => (
@@ -302,7 +323,7 @@ const HomeScreen = () => {
       {/* Next badge */}
       <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-card/60 px-3 py-2.5 text-[11px]">
         <span className="text-muted-foreground">Next Badge:</span>
-        <span className="font-extrabold">7-Day Streak 🏅</span>
+        <span className="font-extrabold">7-Day Streak <span className="inline-block animate-streak-glow">🏅</span></span>
       </div>
 
       {/* Today's checklist — all checked, full progress, line-through */}

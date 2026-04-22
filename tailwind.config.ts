@@ -39,6 +39,11 @@ export default {
           DEFAULT: "hsl(var(--warning))",
           foreground: "hsl(var(--warning-foreground))",
         },
+        violet: {
+          DEFAULT: "hsl(var(--violet))",
+          foreground: "hsl(var(--violet-foreground))",
+          deep: "hsl(var(--violet-deep))",
+        },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
@@ -68,12 +73,16 @@ export default {
       },
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
+        'gradient-violet': 'var(--gradient-violet)',
+        'gradient-duo': 'var(--gradient-duo)',
         'gradient-hero': 'var(--gradient-hero)',
         'gradient-card': 'var(--gradient-card)',
         'gradient-orb': 'var(--gradient-orb)',
+        'gradient-orb-violet': 'var(--gradient-orb-violet)',
       },
       boxShadow: {
         glow: 'var(--shadow-glow)',
+        'glow-violet': 'var(--shadow-glow-violet)',
         'soft-glow': 'var(--shadow-soft-glow)',
         elegant: 'var(--shadow-elegant)',
         card: 'var(--shadow-card)',
