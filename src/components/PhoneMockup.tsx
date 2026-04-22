@@ -88,7 +88,7 @@ const PhoneMockup = () => {
             <div
               key={tab}
               className={`scrollbar-hide absolute inset-0 overflow-y-auto pt-9 animate-fade-in ${
-                tab === "chat" ? "pb-[120px]" : "pb-24"
+                tab === "chat" ? "pb-[210px]" : "pb-24"
               }`}
             >
               {tab === "home" && <HomeScreen />}
@@ -98,7 +98,12 @@ const PhoneMockup = () => {
               {tab === "buddies" && <BuddiesScreen />}
             </div>
 
-            {tab === "chat" && <ChatInput />}
+            {tab === "chat" && (
+              <>
+                <TodaysChallenge />
+                <ChatInput />
+              </>
+            )}
 
             {/* Bottom Nav — pill style matching real app */}
             <div className="absolute inset-x-3 bottom-3 z-30">
