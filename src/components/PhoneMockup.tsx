@@ -342,7 +342,10 @@ const ChatScreen = () => {
       {/* Header */}
       <div className="flex items-center gap-2">
         <ChevronLeft className="h-4 w-4" />
-        <div className="h-7 w-7 rounded-full bg-muted" />
+        <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-primary/30 to-primary-deep/40 ring-2 ring-primary/40">
+          <img src={mascot} alt="AI Coach" className="h-6 w-6" />
+          <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-primary ring-2 ring-background" />
+        </div>
         <div>
           <p className="text-xs font-bold">AI Coach</p>
           <p className="text-[8px] text-primary">Online</p>
@@ -404,7 +407,15 @@ const ChatScreen = () => {
 
 const Bubble = ({ side, children }: { side: "left" | "right"; children: React.ReactNode }) => (
   <div className={`flex items-end gap-1.5 ${side === "right" ? "flex-row-reverse" : ""}`}>
-    <div className="h-5 w-5 shrink-0 rounded-full bg-muted" />
+    {side === "left" ? (
+      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary/30 to-primary-deep/40 ring-1 ring-primary/40">
+        <img src={mascot} alt="" className="h-3.5 w-3.5" />
+      </div>
+    ) : (
+      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-400 to-pink-500 text-[7px] font-bold text-white ring-1 ring-white/20">
+        J
+      </div>
+    )}
     <div
       className={`max-w-[75%] rounded-2xl px-2.5 py-1.5 text-[9px] leading-snug ${
         side === "right" ? "bg-primary text-primary-foreground" : "bg-card border border-border/60"
@@ -642,9 +653,30 @@ const RewardScreen = () => {
 /* ============================== BUDDIES ============================== */
 const BuddiesScreen = () => {
   const buddies = [
-    { name: "Davis Curtis", status: "PENDING", color: "text-warning", action: "Nudge" },
-    { name: "Sara Lee", status: "COMPLETED", color: "text-primary", action: "View" },
-    { name: "Mira K.", status: "MISSED", color: "text-destructive", action: "Nudge" },
+    {
+      name: "Davis Curtis",
+      initials: "DC",
+      gradient: "from-blue-400 to-indigo-600",
+      status: "PENDING",
+      color: "text-warning",
+      action: "Nudge",
+    },
+    {
+      name: "Sara Lee",
+      initials: "SL",
+      gradient: "from-pink-400 to-rose-600",
+      status: "COMPLETED",
+      color: "text-primary",
+      action: "View",
+    },
+    {
+      name: "Mira K.",
+      initials: "MK",
+      gradient: "from-amber-400 to-orange-600",
+      status: "MISSED",
+      color: "text-destructive",
+      action: "Nudge",
+    },
   ];
   return (
     <div className="space-y-2.5 px-4">
@@ -673,7 +705,11 @@ const BuddiesScreen = () => {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary/60 to-primary-deep" />
+                <div
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${b.gradient} text-[9px] font-bold text-white ring-2 ring-white/10 shadow-soft-glow`}
+                >
+                  {b.initials}
+                </div>
                 <div>
                   <p className="text-[10px] font-bold">{b.name}</p>
                   <span className="mt-0.5 inline-flex items-center gap-1 rounded-full bg-orange-500/20 px-1.5 py-0.5 text-[8px] text-orange-300">
