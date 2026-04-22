@@ -16,6 +16,9 @@ import {
   Smile,
   Zap,
   Award,
+  Send,
+  Sparkles,
+  TrendingUp,
 } from "lucide-react";
 import mascot from "@/assets/mascot.png";
 
@@ -62,35 +65,19 @@ const PhoneMockup = () => {
       <div className="absolute -inset-10 -z-10 bg-gradient-orb opacity-70 blur-3xl" />
 
       {/* Floating UI cards (decorative, hidden on small screens) */}
-      <FloatingCard
-        className="-left-8 top-16 animate-float"
+      <FloatingProgressCard
+        className="-left-10 top-20 animate-float"
         delay="0.2s"
-        icon={<Zap className="h-4 w-4" />}
-        iconWrap="bg-gradient-primary text-primary-foreground"
-        kicker="XP gained"
-        value="+80 XP"
       />
-      <FloatingCard
-        className="-right-6 top-32 animate-float-slow"
-        delay="0.5s"
-        icon={<Award className="h-4 w-4" />}
-        iconWrap="bg-warning/20 text-warning"
-        kicker="Badge"
-        value="7-Day Streak"
-      />
-      <FloatingCard
-        className="-left-6 bottom-40 animate-float"
-        delay="0.8s"
-        icon={<Flame className="h-4 w-4" />}
-        iconWrap="bg-orange-500/20 text-orange-400"
-        kicker="Current"
-        value="7 days"
+      <FloatingStreakCard
+        className="-right-8 bottom-32 animate-float-slow"
+        delay="0.6s"
       />
       <img
         src={mascot}
         alt=""
         aria-hidden
-        className="absolute -right-10 bottom-16 z-20 hidden h-20 w-20 animate-float drop-shadow-[0_0_20px_hsl(var(--primary)/0.5)] sm:block"
+        className="absolute -right-10 -top-6 z-20 hidden h-16 w-16 animate-float drop-shadow-[0_0_20px_hsl(var(--primary)/0.5)] sm:block"
         style={{ animationDelay: "0.3s" }}
       />
 
@@ -116,7 +103,9 @@ const PhoneMockup = () => {
             {/* Screen content (scrollable) */}
             <div
               key={tab}
-              className="scrollbar-hide absolute inset-0 overflow-y-auto pb-20 pt-9 animate-fade-in"
+              className={`scrollbar-hide absolute inset-0 overflow-y-auto pt-9 animate-fade-in ${
+                tab === "chat" ? "pb-[120px]" : "pb-20"
+              }`}
             >
               {tab === "home" && <HomeScreen />}
               {tab === "chat" && <ChatScreen />}
@@ -124,6 +113,9 @@ const PhoneMockup = () => {
               {tab === "reward" && <RewardScreen />}
               {tab === "buddies" && <BuddiesScreen />}
             </div>
+
+            {/* Chat input — pinned above nav, only on chat tab */}
+            {tab === "chat" && <ChatInput />}
 
             {/* Bottom Nav — pill style matching real app */}
             <div className="absolute inset-x-3 bottom-3 z-30">
@@ -164,33 +156,78 @@ const PhoneMockup = () => {
   );
 };
 
-/* -------------------- Reusable floating side card -------------------- */
-const FloatingCard = ({
+/* -------------------- Premium floating side cards -------------------- */
+const FloatingProgressCard = ({
   className,
   delay,
-  icon,
-  iconWrap,
-  kicker,
-  value,
 }: {
   className: string;
   delay: string;
-  icon: React.ReactNode;
-  iconWrap: string;
-  kicker: string;
-  value: string;
+}) => (
+  <div
+    className={`glass-strong absolute z-20 hidden w-[180px] rounded-2xl p-3 shadow-elegant sm:block ${className}`}
+    style={{ animationDelay: delay }}
+  >
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-primary text-primary-foreground shadow-soft-glow">
+          <TrendingUp className="h-4 w-4" />
+        </div>
+        <div>
+          <p className="text-[9px] uppercase tracking-wider text-muted-foreground">
+            Today
+          </p>
+          <p className="font-display text-xs font-bold">+120 XP</p>
+        </div>
+      </div>
+      <span className="text-[10px] font-semibold text-primary">+18%</span>
+    </div>
+    <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-border/70">
+      <div
+        className="h-full rounded-full bg-gradient-primary animate-shimmer"
+        style={{ width: "72%" }}
+      />
+    </div>
+    <div className="mt-1.5 flex items-center justify-between text-[8px] text-muted-foreground">
+      <span>Level 3</span>
+      <span>Level 4</span>
+    </div>
+  </div>
+);
+
+const FloatingStreakCard = ({
+  className,
+  delay,
+}: {
+  className: string;
+  delay: string;
 }) => (
   <div
     className={`glass-strong absolute z-20 hidden rounded-2xl p-3 shadow-elegant sm:block ${className}`}
     style={{ animationDelay: delay }}
   >
     <div className="flex items-center gap-2.5">
-      <div className={`flex h-9 w-9 items-center justify-center rounded-full ${iconWrap}`}>
-        {icon}
+      <div className="relative flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500/30 to-orange-600/10 ring-1 ring-orange-400/30">
+        <Flame className="h-5 w-5 text-orange-400 drop-shadow-[0_0_8px_rgb(251,146,60,0.6)]" />
+        <span className="absolute -right-1 -top-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-primary text-[7px] font-bold text-primary-foreground ring-2 ring-background">
+          7
+        </span>
       </div>
       <div>
-        <p className="text-[10px] uppercase tracking-wider text-muted-foreground">{kicker}</p>
-        <p className="font-display text-sm font-bold text-foreground">{value}</p>
+        <p className="text-[9px] uppercase tracking-wider text-muted-foreground">
+          Streak
+        </p>
+        <p className="font-display text-xs font-bold leading-tight">
+          7 day fire
+        </p>
+        <div className="mt-0.5 flex gap-0.5">
+          {[...Array(7)].map((_, i) => (
+            <span
+              key={i}
+              className="h-1 w-2.5 rounded-full bg-gradient-to-r from-orange-500 to-primary"
+            />
+          ))}
+        </div>
       </div>
     </div>
   </div>
@@ -393,17 +430,28 @@ const ChatScreen = () => {
           Accept Challenge
         </button>
       </div>
-
-      {/* Input */}
-      <div className="flex items-center gap-1.5 rounded-full border border-border/70 bg-card/60 px-2 py-1.5">
-        <Smile className="h-3 w-3 text-muted-foreground" />
-        <span className="flex-1 text-[9px] text-muted-foreground">Type message</span>
-        <Paperclip className="h-3 w-3 text-muted-foreground" />
-        <div className="h-5 w-5 rounded-full bg-primary" />
-      </div>
     </div>
   );
 };
+
+/* Chat input — anchored above the bottom nav */
+const ChatInput = () => (
+  <div className="absolute inset-x-3 bottom-[68px] z-20">
+    <div className="flex items-center gap-1.5 rounded-full border border-border/70 bg-card/90 px-2.5 py-1.5 backdrop-blur-xl shadow-elegant">
+      <Smile className="h-3 w-3 text-muted-foreground" />
+      <span className="flex-1 truncate text-[9px] text-muted-foreground">
+        Type message
+      </span>
+      <Paperclip className="h-3 w-3 text-muted-foreground" />
+      <button
+        aria-label="Send"
+        className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-primary text-primary-foreground shadow-[0_0_12px_hsl(var(--primary)/0.6)] transition-transform hover:scale-105 active:scale-95"
+      >
+        <Send className="h-3 w-3 -translate-x-[1px] translate-y-[1px]" strokeWidth={2.5} />
+      </button>
+    </div>
+  </div>
+);
 
 const Bubble = ({ side, children }: { side: "left" | "right"; children: React.ReactNode }) => (
   <div className={`flex items-end gap-1.5 ${side === "right" ? "flex-row-reverse" : ""}`}>
