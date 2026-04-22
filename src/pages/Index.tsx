@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Brain, Bell, Compass, Users, BarChart3, Star, ShieldCheck, Apple } from "lucide-react";
 import PhoneMockup from "@/components/PhoneMockup";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
 import mascot from "@/assets/mascot.png";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
@@ -196,27 +197,7 @@ const Index = () => {
 
       {/* TESTIMONIAL */}
       <section className="container mx-auto px-4 py-24">
-        <div className="reveal relative mx-auto max-w-4xl overflow-hidden rounded-[2.5rem] border border-primary/20 bg-gradient-card p-10 sm:p-14">
-          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gradient-orb opacity-50 blur-3xl" />
-          <div className="relative">
-            <div className="flex items-center gap-1 text-warning">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-current" />
-              ))}
-            </div>
-            <blockquote className="mt-6 font-display text-2xl font-medium leading-snug sm:text-3xl">
-              “I tried every habit app. Reset Right is the first one that actually
-              changed how I see myself. Day 21 felt like meeting a new version of me.”
-            </blockquote>
-            <div className="mt-8 flex items-center gap-4">
-              <img src={mascot} alt="" className="h-12 w-12 rounded-full bg-primary/20 p-1.5" />
-              <div>
-                <p className="font-semibold">Maya R.</p>
-                <p className="text-sm text-muted-foreground">Beat doom-scrolling, day 47 strong</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <TestimonialCarousel />
       </section>
 
       {/* CTA */}
