@@ -12,32 +12,52 @@ const links = [
   { to: "/contact", label: "Contact" },
 ];
 
+const SHRINK_RANGE = 160; // px of scroll over which the navbar gradually morphs
+
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0); // 0 = full-width bar, 1 = floating pill
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
+    let raf = 0;
+    const compute = () => {
+      const p = Math.min(1, Math.max(0, window.scrollY / SHRINK_RANGE));
+      setProgress(p);
+      raf = 0;
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(compute);
+    };
+    compute();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   useEffect(() => setOpen(false), [pathname]);
 
+  // Interpolated values: smooth easing across the scroll range
+  const eased = progress * progress * (3 - 2 * progress); // smoothstep
+  const headerStyle: React.CSSProperties = {
+    paddingTop: `${eased * 24}px`,
+    paddingLeft: `${eased * 16}px`,
+    paddingRight: `${eased * 16}px`,
+  };
+  const navStyle: React.CSSProperties = {
+    // width morphs from 100vw down to 64rem (max-w-5xl), accounting for header padding
+    width: `calc(${100 - eased * 100}vw + ${eased} * min(64rem, 100vw - 32px))`,
+    maxWidth: `calc(100vw - ${eased * 32}px)`,
+    borderRadius: `${eased * 9999}px`,
+  };
+
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 flex justify-center transition-all duration-500 ease-out ${
-        scrolled ? "px-4 pt-4 sm:pt-6" : "px-0 pt-0"
-      }`}
-    >
+    <header style={headerStyle} className="fixed inset-x-0 top-0 z-50 flex justify-center">
       <nav
-        className={`glass-strong relative flex w-full items-center gap-2 p-2 pl-4 transition-all duration-500 ease-out ${
-          scrolled
-            ? "max-w-5xl rounded-full shadow-elegant"
-            : "max-w-none rounded-none border-x-0 shadow-card sm:px-6"
-        }`}
+        style={navStyle}
+        className="glass-strong relative flex items-center gap-2 p-2 pl-4 shadow-card"
         aria-label="Primary"
       >
         {/* Logo */}
