@@ -653,9 +653,30 @@ const RewardScreen = () => {
 /* ============================== BUDDIES ============================== */
 const BuddiesScreen = () => {
   const buddies = [
-    { name: "Davis Curtis", status: "PENDING", color: "text-warning", action: "Nudge" },
-    { name: "Sara Lee", status: "COMPLETED", color: "text-primary", action: "View" },
-    { name: "Mira K.", status: "MISSED", color: "text-destructive", action: "Nudge" },
+    {
+      name: "Davis Curtis",
+      initials: "DC",
+      gradient: "from-blue-400 to-indigo-600",
+      status: "PENDING",
+      color: "text-warning",
+      action: "Nudge",
+    },
+    {
+      name: "Sara Lee",
+      initials: "SL",
+      gradient: "from-pink-400 to-rose-600",
+      status: "COMPLETED",
+      color: "text-primary",
+      action: "View",
+    },
+    {
+      name: "Mira K.",
+      initials: "MK",
+      gradient: "from-amber-400 to-orange-600",
+      status: "MISSED",
+      color: "text-destructive",
+      action: "Nudge",
+    },
   ];
   return (
     <div className="space-y-2.5 px-4">
@@ -684,7 +705,11 @@ const BuddiesScreen = () => {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary/60 to-primary-deep" />
+                <div
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${b.gradient} text-[9px] font-bold text-white ring-2 ring-white/10 shadow-soft-glow`}
+                >
+                  {b.initials}
+                </div>
                 <div>
                   <p className="text-[10px] font-bold">{b.name}</p>
                   <span className="mt-0.5 inline-flex items-center gap-1 rounded-full bg-orange-500/20 px-1.5 py-0.5 text-[8px] text-orange-300">
