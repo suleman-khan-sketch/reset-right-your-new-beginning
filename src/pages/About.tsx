@@ -30,14 +30,14 @@ const About = () => (
           <img src={mascot} alt="Reset Right mascot" className="mx-auto h-72 w-72 animate-float drop-shadow-[0_0_40px_hsl(var(--primary)/0.5)]" />
         </div>
         <div>
-          <h2 className="font-display text-3xl font-bold sm:text-4xl">Meet Reset</h2>
+          <h2 className="font-display text-3xl font-bold sm:text-4xl">Meet Nudge</h2>
           <p className="mt-4 text-muted-foreground">
-            Our mascot — and your companion. Reset is the friendly face of the
+            Our mascot — and your companion. Nudge is the friendly face of the
             AI coach: encouraging when you doubt, celebratory when you win,
             and quietly present when you just need a nudge.
           </p>
           <p className="mt-4 text-muted-foreground">
-            Behind Reset is a transformation engine built on adaptive learning,
+            Behind Nudge is a transformation engine built on adaptive learning,
             context awareness, and 21-day identity programs proven to drive
             measurable behavioral change.
           </p>
