@@ -86,7 +86,7 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const ROTATION_MS = 4000;
+const ROTATION_MS = 2000;
 
 const TestimonialCarousel = () => {
   const [index, setIndex] = useState(0);
