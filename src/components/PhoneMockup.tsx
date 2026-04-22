@@ -653,6 +653,33 @@ const StatsScreen = () => {
           </div>
         </div>
       </div>
+
+      {/* Missed Days */}
+      <div className="rounded-2xl border border-primary/15 bg-card/50 p-3">
+        <p className="text-[12px] font-extrabold">Missed Days</p>
+        <div className="mt-2 grid grid-cols-2 gap-3">
+          <div>
+            <div className="flex items-center gap-1.5">
+              <span className="flex h-4 w-4 items-center justify-center rounded-full ring-1 ring-primary">
+                <span className="text-[8px] font-bold text-primary leading-none">×</span>
+              </span>
+              <span className="text-[9.5px] text-foreground/85">Total missed days</span>
+            </div>
+            <p className="mt-1.5 font-display text-[16px] font-extrabold text-primary leading-none">
+              2 Days
+            </p>
+          </div>
+          <div>
+            <div className="flex items-center gap-1.5">
+              <Calendar className="h-3.5 w-3.5 text-primary" strokeWidth={2.2} />
+              <span className="text-[9.5px] text-foreground/85">Last missed</span>
+            </div>
+            <p className="mt-1.5 font-display text-[16px] font-extrabold text-primary leading-none">
+              5 Days
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
