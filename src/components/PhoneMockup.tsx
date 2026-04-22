@@ -17,8 +17,6 @@ import {
   Zap,
   Award,
   Send,
-  Sparkles,
-  TrendingUp,
 } from "lucide-react";
 import mascot from "@/assets/mascot.png";
 
