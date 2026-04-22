@@ -107,7 +107,7 @@ const PhoneMockup = () => {
 
             {/* Bottom Nav — pill style matching real app */}
             <div className="absolute inset-x-3 bottom-3 z-30">
-              <div className="flex items-center justify-between rounded-full border border-primary/10 bg-[hsl(160_18%_8%)]/95 px-2 py-2 backdrop-blur-xl shadow-elegant">
+              <div className="flex items-center justify-between rounded-full border border-primary/20 bg-[hsl(160_22%_6%)] px-2 py-2 shadow-elegant">
                 {TABS.map(({ id, label, Icon }) => {
                   const active = tab === id;
                   return (

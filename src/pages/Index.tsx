@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Brain, Bell, Compass, Users, BarChart3, Star, ShieldCheck, Apple } from "lucide-react";
 import PhoneMockup from "@/components/PhoneMockup";
 import mascot from "@/assets/mascot.png";
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
+import avatar4 from "@/assets/avatar-4.jpg";
+
+const avatars = [avatar1, avatar2, avatar3, avatar4];
 
 const features = [
   { icon: Brain, title: "AI Diagnostic", desc: "Tell us a habit in your own words. Our AI builds a custom 21-day journey just for you." },
@@ -66,10 +72,15 @@ const Index = () => {
 
             <div className="mt-10 flex items-center gap-6 text-xs text-muted-foreground">
               <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div
+                {avatars.map((src, i) => (
+                  <img
                     key={i}
-                    className="h-8 w-8 rounded-full border-2 border-background bg-gradient-to-br from-primary/60 to-primary-deep"
+                    src={src}
+                    alt=""
+                    loading="lazy"
+                    width={32}
+                    height={32}
+                    className="h-8 w-8 rounded-full border-2 border-background object-cover"
                   />
                 ))}
               </div>
