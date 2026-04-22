@@ -103,7 +103,9 @@ const PhoneMockup = () => {
             {/* Screen content (scrollable) */}
             <div
               key={tab}
-              className="scrollbar-hide absolute inset-0 overflow-y-auto pb-20 pt-9 animate-fade-in"
+              className={`scrollbar-hide absolute inset-0 overflow-y-auto pt-9 animate-fade-in ${
+                tab === "chat" ? "pb-[120px]" : "pb-20"
+              }`}
             >
               {tab === "home" && <HomeScreen />}
               {tab === "chat" && <ChatScreen />}
@@ -111,6 +113,9 @@ const PhoneMockup = () => {
               {tab === "reward" && <RewardScreen />}
               {tab === "buddies" && <BuddiesScreen />}
             </div>
+
+            {/* Chat input — pinned above nav, only on chat tab */}
+            {tab === "chat" && <ChatInput />}
 
             {/* Bottom Nav — pill style matching real app */}
             <div className="absolute inset-x-3 bottom-3 z-30">
