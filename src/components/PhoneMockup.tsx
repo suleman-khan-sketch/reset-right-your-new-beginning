@@ -17,6 +17,7 @@ import {
   Send,
   Crown,
   Bell,
+  Sparkles,
 } from "lucide-react";
 import mascot from "@/assets/mascot.png";
 import avatar1 from "@/assets/avatar-1.jpg";
@@ -298,8 +299,7 @@ const HomeScreen = () => {
         </div>
         <div className="relative mt-2 h-[5px] rounded-full bg-[hsl(160_10%_18%)]">
           <div
-            className="absolute left-0 top-0 h-full rounded-full bg-primary"
-            style={{ width: "62%" }}
+            className="absolute left-0 top-0 h-full rounded-full bg-gradient-primary animate-xp-fill"
           />
           {/* Level marker dots sit ON the bar */}
           {[12.5, 37.5, 62.5, 87.5].map((p, i) => (
@@ -323,7 +323,7 @@ const HomeScreen = () => {
       {/* Next badge */}
       <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-card/60 px-3 py-2.5 text-[11px]">
         <span className="text-muted-foreground">Next Badge:</span>
-        <span className="font-extrabold">7-Day Streak 🏅</span>
+        <span className="font-extrabold">7-Day Streak <span className="inline-block animate-streak-glow">🏅</span></span>
       </div>
 
       {/* Today's checklist — all checked, full progress, line-through */}
