@@ -76,10 +76,13 @@ const Navbar = () => {
         {/* CTA */}
         <Link
           to="/pricing"
-          className="ml-auto hidden items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-all hover:scale-[1.03] hover:shadow-glow md:flex"
+          className="ml-auto hidden items-center gap-1.5 rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft-glow transition-all hover:scale-[1.04] hover:shadow-glow animate-pulse-glow md:flex"
         >
           <Sparkles className="h-4 w-4" />
           Get the App
+          <span className="ml-1 rounded-full bg-primary-foreground/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider">
+            New
+          </span>
         </Link>
 
         {/* Mobile toggle */}
