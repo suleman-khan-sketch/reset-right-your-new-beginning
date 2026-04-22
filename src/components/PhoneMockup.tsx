@@ -342,7 +342,10 @@ const ChatScreen = () => {
       {/* Header */}
       <div className="flex items-center gap-2">
         <ChevronLeft className="h-4 w-4" />
-        <div className="h-7 w-7 rounded-full bg-muted" />
+        <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-primary/30 to-primary-deep/40 ring-2 ring-primary/40">
+          <img src={mascot} alt="AI Coach" className="h-6 w-6" />
+          <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-primary ring-2 ring-background" />
+        </div>
         <div>
           <p className="text-xs font-bold">AI Coach</p>
           <p className="text-[8px] text-primary">Online</p>
