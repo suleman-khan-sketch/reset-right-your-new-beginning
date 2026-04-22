@@ -27,10 +27,16 @@ const Navbar = () => {
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 sm:pt-6">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 flex justify-center transition-all duration-500 ease-out ${
+        scrolled ? "px-4 pt-4 sm:pt-6" : "px-0 pt-0"
+      }`}
+    >
       <nav
-        className={`glass-strong relative flex w-full max-w-5xl items-center gap-2 rounded-full p-2 pl-4 transition-all duration-500 ${
-          scrolled ? "shadow-elegant" : "shadow-card"
+        className={`glass-strong relative flex w-full items-center gap-2 p-2 pl-4 transition-all duration-500 ease-out ${
+          scrolled
+            ? "max-w-5xl rounded-full shadow-elegant"
+            : "max-w-none rounded-none border-x-0 shadow-card sm:px-6"
         }`}
         aria-label="Primary"
       >
