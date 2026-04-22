@@ -64,15 +64,6 @@ const PhoneMockup = () => {
       {/* Background glow */}
       <div className="absolute -inset-10 -z-10 bg-gradient-orb opacity-70 blur-3xl" />
 
-      {/* Floating UI cards (decorative, hidden on small screens) */}
-      <FloatingProgressCard
-        className="-left-10 top-20 animate-float"
-        delay="0.2s"
-      />
-      <FloatingStreakCard
-        className="-right-8 bottom-32 animate-float-slow"
-        delay="0.6s"
-      />
       <img
         src={mascot}
         alt=""
