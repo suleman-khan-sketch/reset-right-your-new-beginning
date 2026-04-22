@@ -88,7 +88,7 @@ const PhoneMockup = () => {
             <div
               key={tab}
               className={`scrollbar-hide absolute inset-0 overflow-y-auto pt-9 animate-fade-in ${
-                tab === "chat" ? "pb-[210px]" : "pb-24"
+                tab === "chat" ? "pb-[210px]" : "pb-28"
               }`}
             >
               {tab === "home" && <HomeScreen />}
