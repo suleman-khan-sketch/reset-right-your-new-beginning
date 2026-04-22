@@ -46,11 +46,11 @@ const Navbar = () => {
     paddingLeft: `${eased * 16}px`,
     paddingRight: `${eased * 16}px`,
   };
+  // width morphs from 100vw → 64rem (max-w-5xl), shadow & radius scale together
   const navStyle: React.CSSProperties = {
-    // width morphs from 100vw down to 64rem (max-w-5xl), accounting for header padding
-    width: `calc(${100 - eased * 100}vw + ${eased} * min(64rem, 100vw - 32px))`,
-    maxWidth: `calc(100vw - ${eased * 32}px)`,
+    width: `calc((1 - ${eased}) * 100vw + ${eased} * min(64rem, 100vw - 32px))`,
     borderRadius: `${eased * 9999}px`,
+    boxShadow: eased > 0.5 ? "var(--shadow-elegant)" : "var(--shadow-card)",
   };
 
   return (
